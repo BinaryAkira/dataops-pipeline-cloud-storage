@@ -39,3 +39,5 @@ typing_extensions==4.15.0
 tzdata==2025.3
 urllib3==2.6.3
 virtualenv==21.2.0
+google-cloud-storage==2.18.2
+

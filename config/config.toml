@@ -1,0 +1,15 @@
+[storage]
+backend = "local"  # or "firebase"
+
+[local]
+input_path = "data/raw/pokemon_raw.json"
+output_path = "data/processed/pokemon_processed.csv"
+
+[firebase]
+bucket = "your-bucket-name"
+credentials = "service_account.json"  # path inside container
+input_blob = "raw/pokemon_raw.json"
+output_blob = "processed/pokemon_processed.csv"
+
+[logging]
+level = "INFO"

@@ -23,16 +23,18 @@ PROCESSED_DIR = Path("data/processed")
 PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
 
 
-def load_raw(path: Path = RAW_PATH) -> Dict[str, Any]:
+def load_raw(path: str) -> Dict[str, Any]:
     """
-    Load raw Pokémon JSON data from disk.
+    Load raw JSON data from the specified path.
 
     Args:
-        path (Path): Path to the raw JSON file.
+        path (str): Full filesystem path to the raw JSON file.
 
     Returns:
-        Dict[str, Any]: Parsed JSON dictionary containing the API response.
+        Dict[str, Any]: Parsed JSON content.
     """
+    path = Path(path)
+
     with path.open("r", encoding="utf-8") as f:
         return json.load(f)
 
@@ -58,20 +60,24 @@ def extract_records(data: Dict[str, Any]) -> List[Dict[str, Any]]:
     ]
 
 
-def save_processed(df: pd.DataFrame, filename: str = "pokemon_processed.csv") -> Path:
+def save_processed(df: pd.DataFrame, path: str) -> str:
     """
-    Save the processed Pokémon DataFrame to a CSV file.
+    Save processed DataFrame to the specified path.
 
     Args:
-        df (pd.DataFrame): DataFrame containing cleaned Pokémon records.
-        filename (str): Name of the output CSV file.
+        df (pd.DataFrame): DataFrame to save.
+        path (str): Full filesystem path for the output CSV.
 
     Returns:
-        Path: Filesystem path to the saved CSV file.
+        str: Path to the saved file.
     """
-    path = PROCESSED_DIR / filename
+    path = Path(path)
+
+    # Ensure parent directory exists
+    path.parent.mkdir(parents=True, exist_ok=True)
+
     df.to_csv(path, index=False)
-    return path
+    return str(path)
 
 
 def main() -> None:

@@ -28,3 +28,119 @@
 2026-03-19 16:06:13,559 - src.validate.validate_main - INFO - Starting validation step
 2026-03-19 16:06:13,599 - src.validate.validate_main - INFO - Validation successful — processed data is valid.
 2026-03-19 16:06:13,599 - src.pipeline - INFO - Pipeline run completed successfully
+2026-03-26 18:35:11,239 - src.pipeline - INFO - Pipeline run started
+2026-03-26 18:35:11,240 - src.pipeline - ERROR - Pipeline run failed: run_ingest() takes 0 positional arguments but 1 was given
+Traceback (most recent call last):
+  File "d:\MLOps\dataops-pipeline-cloud-storage\src\pipeline.py", line 39, in run_pipeline
+    run_ingest(config)
+    ~~~~~~~~~~^^^^^^^^
+TypeError: run_ingest() takes 0 positional arguments but 1 was given
+2026-03-26 18:38:55,409 - src.pipeline - INFO - Pipeline run started
+2026-03-26 18:38:55,410 - src.ingest.ingest_main - INFO - Starting ingestion step
+2026-03-26 18:38:55,875 - src.pipeline - ERROR - Pipeline run failed: [Errno 2] No such file or directory: 'data\\raw\\data\\raw\\pokemon_raw.json'
+Traceback (most recent call last):
+  File "d:\MLOps\dataops-pipeline-cloud-storage\src\pipeline.py", line 39, in run_pipeline
+    run_ingest(config)
+    ~~~~~~~~~~^^^^^^^^
+  File "d:\MLOps\dataops-pipeline-cloud-storage\src\ingest\ingest_main.py", line 33, in run_ingest
+    path = save_raw(data, output_path)
+  File "d:\MLOps\dataops-pipeline-cloud-storage\src\ingest\ingest.py", line 58, in save_raw
+    with path.open("w", encoding="utf-8") as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexa\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data\\raw\\data\\raw\\pokemon_raw.json'
+2026-03-26 18:39:22,139 - src.pipeline - INFO - Pipeline run started
+2026-03-26 18:39:22,140 - src.ingest.ingest_main - INFO - Starting ingestion step
+2026-03-26 18:39:22,596 - src.pipeline - ERROR - Pipeline run failed: [Errno 2] No such file or directory: 'data\\raw\\data\\raw\\pokemon_raw.json'
+Traceback (most recent call last):
+  File "d:\MLOps\dataops-pipeline-cloud-storage\src\pipeline.py", line 39, in run_pipeline
+    run_ingest(config)
+    ~~~~~~~~~~^^^^^^^^
+  File "d:\MLOps\dataops-pipeline-cloud-storage\src\ingest\ingest_main.py", line 33, in run_ingest
+    path = save_raw(data, output_path)
+  File "d:\MLOps\dataops-pipeline-cloud-storage\src\ingest\ingest.py", line 58, in save_raw
+    with path.open("w", encoding="utf-8") as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alexa\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data\\raw\\data\\raw\\pokemon_raw.json'
+2026-03-26 18:41:33,041 - src.pipeline - INFO - Pipeline run started
+2026-03-26 18:41:33,042 - src.ingest.ingest_main - INFO - Starting ingestion step
+2026-03-26 18:41:33,486 - src.ingest.ingest_main - INFO - Ingestion complete: saved to data\raw\pokemon_raw.json
+2026-03-26 18:41:33,487 - src.transform.transform_main - INFO - Starting transformation step
+2026-03-26 18:41:33,487 - src.pipeline - ERROR - Pipeline run failed: 'str' object has no attribute 'open'
+Traceback (most recent call last):
+  File "d:\MLOps\dataops-pipeline-cloud-storage\src\pipeline.py", line 40, in run_pipeline
+    run_transform(config)
+    ~~~~~~~~~~~~~^^^^^^^^
+  File "d:\MLOps\dataops-pipeline-cloud-storage\src\transform\transform_main.py", line 36, in run_transform
+    raw = load_raw(raw_path)
+  File "d:\MLOps\dataops-pipeline-cloud-storage\src\transform\transform.py", line 36, in load_raw
+    with path.open("r", encoding="utf-8") as f:
+         ^^^^^^^^^
+AttributeError: 'str' object has no attribute 'open'
+2026-03-26 18:42:37,625 - src.pipeline - INFO - Pipeline run started
+2026-03-26 18:42:37,626 - src.ingest.ingest_main - INFO - Starting ingestion step
+2026-03-26 18:42:38,056 - src.ingest.ingest_main - INFO - Ingestion complete: saved to data\raw\pokemon_raw.json
+2026-03-26 18:42:38,057 - src.transform.transform_main - INFO - Starting transformation step
+2026-03-26 18:42:38,075 - src.pipeline - ERROR - Pipeline run failed: Cannot save file into a non-existent directory: 'data\processed\data\processed'
+Traceback (most recent call last):
+  File "d:\MLOps\dataops-pipeline-cloud-storage\src\pipeline.py", line 40, in run_pipeline
+    run_transform(config)
+    ~~~~~~~~~~~~~^^^^^^^^
+  File "d:\MLOps\dataops-pipeline-cloud-storage\src\transform\transform_main.py", line 40, in run_transform
+    saved_path = save_processed(df, output_path)
+  File "d:\MLOps\dataops-pipeline-cloud-storage\src\transform\transform.py", line 75, in save_processed
+    df.to_csv(path, index=False)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "d:\MLOps\dataops-pipeline-cloud-storage\pipeline-venv-cloud\Lib\site-packages\pandas\core\generic.py", line 3988, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        path_or_buf,
+        ^^^^^^^^^^^^
+    ...<14 lines>...
+        storage_options=storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "d:\MLOps\dataops-pipeline-cloud-storage\pipeline-venv-cloud\Lib\site-packages\pandas\io\formats\format.py", line 1025, in to_csv
+    csv_formatter.save()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "d:\MLOps\dataops-pipeline-cloud-storage\pipeline-venv-cloud\Lib\site-packages\pandas\io\formats\csvs.py", line 251, in save
+    with get_handle(
+         ~~~~~~~~~~^
+        self.filepath_or_buffer,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        storage_options=self.storage_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as handles:
+    ^
+  File "d:\MLOps\dataops-pipeline-cloud-storage\pipeline-venv-cloud\Lib\site-packages\pandas\io\common.py", line 793, in get_handle
+    check_parent_directory(str(handle))
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "d:\MLOps\dataops-pipeline-cloud-storage\pipeline-venv-cloud\Lib\site-packages\pandas\io\common.py", line 652, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+OSError: Cannot save file into a non-existent directory: 'data\processed\data\processed'
+2026-03-26 18:43:29,994 - src.pipeline - INFO - Pipeline run started
+2026-03-26 18:43:29,995 - src.ingest.ingest_main - INFO - Starting ingestion step
+2026-03-26 18:43:30,452 - src.ingest.ingest_main - INFO - Ingestion complete: saved to data\raw\pokemon_raw.json
+2026-03-26 18:43:30,452 - src.transform.transform_main - INFO - Starting transformation step
+2026-03-26 18:43:30,457 - src.transform.transform_main - INFO - Transformation complete: saved to data\processed\pokemon_processed.csv
+2026-03-26 18:43:30,457 - src.pipeline - ERROR - Pipeline run failed: run_validate() takes 0 positional arguments but 1 was given
+Traceback (most recent call last):
+  File "d:\MLOps\dataops-pipeline-cloud-storage\src\pipeline.py", line 41, in run_pipeline
+    run_validate(config)
+    ~~~~~~~~~~~~^^^^^^^^
+TypeError: run_validate() takes 0 positional arguments but 1 was given
+2026-03-26 18:45:37,233 - src.pipeline - INFO - Pipeline run started
+2026-03-26 18:45:37,234 - src.ingest.ingest_main - INFO - Starting ingestion step
+2026-03-26 18:45:37,675 - src.ingest.ingest_main - INFO - Ingestion complete: saved to data\raw\pokemon_raw.json
+2026-03-26 18:45:37,675 - src.transform.transform_main - INFO - Starting transformation step
+2026-03-26 18:45:37,680 - src.transform.transform_main - INFO - Transformation complete: saved to data\processed\pokemon_processed.csv
+2026-03-26 18:45:37,681 - src.validate.validate_main - INFO - Starting validation step
+2026-03-26 18:45:37,803 - src.validate.validate_main - INFO - Validation complete
+2026-03-26 18:45:37,803 - src.pipeline - INFO - Pipeline run completed successfully

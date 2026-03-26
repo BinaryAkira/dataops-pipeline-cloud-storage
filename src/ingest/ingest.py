@@ -42,18 +42,21 @@ def fetch_pokemon(limit: int = 20) -> Dict[str, Any]:
     return response.json()
 
 
-def save_raw(data: Dict[str, Any], filename: str = "pokemon_raw.json") -> Path:
+def save_raw(data: Dict[str, Any], path: str) -> Path:
     """
-    Save raw JSON data to the data/raw directory.
+    Save raw JSON data to the specified path.
 
     Args:
         data (Dict[str, Any]): JSON‑serialisable dictionary to write to disk.
-        filename (str): Name of the output file to create.
+        path (str): Full filesystem path where the JSON file will be saved.
 
     Returns:
         Path: Filesystem path to the saved JSON file.
     """
-    path = RAW_DIR / filename
+    path = Path(path)
+
+    # Ensure parent directory exists
+    path.parent.mkdir(parents=True, exist_ok=True)
 
     with path.open("w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)

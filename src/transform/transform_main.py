@@ -18,7 +18,7 @@ from src.utils.logger import get_logger
 logger = get_logger(__name__)
 
 
-def run_transform() -> None:
+def run_transform(config: dict) -> None:
     """
     Execute the transformation step.
 
@@ -26,11 +26,17 @@ def run_transform() -> None:
     - Loads raw JSON data from disk
     - Extracts relevant Pokémon fields
     - Converts the records into a pandas DataFrame
-    - Saves the processed dataset to data/processed/
+    - Saves the processed dataset to the configured output path
     """
     logger.info("Starting transformation step")
-    raw = load_raw()
+
+    raw_path = config["local"]["input_path"]
+    output_path = config["local"]["output_path"]
+
+    raw = load_raw(raw_path)
     records = extract_records(raw)
     df = pd.DataFrame(records)
-    path = save_processed(df)
-    logger.info(f"Transformation complete: saved to {path}")
+
+    saved_path = save_processed(df, output_path)
+    logger.info(f"Transformation complete: saved to {saved_path}")
+
