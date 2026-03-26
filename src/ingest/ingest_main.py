@@ -33,4 +33,3 @@ def run_ingest(config: dict) -> None:
     path = save_raw(data, output_path)
 
     logger.info(f"Ingestion complete: saved to {path}")
-

@@ -32,4 +32,3 @@ def run_validate(config: dict) -> None:
     validate(df)
 
     logger.info("Validation complete")
-
